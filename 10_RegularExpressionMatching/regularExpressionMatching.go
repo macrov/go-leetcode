@@ -17,6 +17,9 @@ func isMatch(s string, p string) bool {
 		return firstMath && isMatch(s[1:], p[1:])
 	}
 }
+/*
+TODO dynamic programing
+ */
 
 func main() {
 	fmt.Println(isMatch("aa", "a*"))
