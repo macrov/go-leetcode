@@ -13,24 +13,21 @@ var roman = map[uint8]int{
 }
 
 func romanToInt(s string) int {
-	var res int
-	for i:=0;i<len(s); {
-		c := s[i]
-		var n uint8
-		if i==len(s)-1 {
-			n = s[i]
+	return roi(s, 0)
+}
+
+func roi(s string, i int) int {
+	if len(s) == 0 {
+		return i
+	} else if len(s) > 1 {
+		if roman[s[0]] < roman[s[1]] {
+			return roi(s[2:], i+roman[s[1]]-roman[s[0]])
 		} else {
-			n = s[i+1]
+			return roi(s[1:], i+roman[s[0]])
 		}
-		if (roman[n] > roman[c]) {
-			res = res + roman[n] - roman[c]
-			i += 2
-		} else {
-			res = res + roman[c]
-			i++
-		}
+	} else {
+		return i+roman[s[0]]
 	}
-	return res
 }
 
 func main() {
