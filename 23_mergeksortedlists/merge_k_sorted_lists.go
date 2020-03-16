@@ -12,8 +12,8 @@ type ListNode struct {
 }
 
 func mergeTwoLists(l1 *ListNode, l2 *ListNode) *ListNode {
-	dumyHead := &ListNode{}
-	curr := dumyHead
+	dummyHead := &ListNode{}
+	curr := dummyHead
 	for l1 != nil || l2 != nil {
 		if l1 != nil && l2 != nil {
 			if l1.Val <= l2.Val {
@@ -35,7 +35,15 @@ func mergeTwoLists(l1 *ListNode, l2 *ListNode) *ListNode {
 			l1 = l1.Next
 		}
 	}
-	return dumyHead.Next
+	return dummyHead.Next
+}
+
+func mergeKLists(lists []*ListNode) *ListNode {
+	var res *ListNode
+	for _, l := range lists {
+		res = mergeTwoLists(res, l)
+	}
+	return res
 }
 
 func (l *ListNode) ToString() string {
@@ -51,10 +59,10 @@ func (l *ListNode) ToString() string {
 }
 
 func main() {
-	var l1, l2, head, curr *ListNode
+	var l1, l2, l3, head, curr *ListNode
 	curr = &ListNode{}
 	head = curr
-	for _, n := range []int{1,2,4} {
+	for _, n := range []int{1,4,5} {
 		curr.Next = &ListNode{n, nil}
 		curr = curr.Next
 	}
@@ -69,5 +77,14 @@ func main() {
 	}
 	head = head.Next
 	l2 = head
-	fmt.Println(mergeTwoLists(l1, l2).ToString())
+
+	curr = &ListNode{}
+	head = curr
+	for _, n := range []int{2,6} {
+		curr.Next = &ListNode{n, nil}
+		curr = curr.Next
+	}
+	head = head.Next
+	l3 = head
+	fmt.Println(mergeKLists([]*ListNode{l1,l2,l3}).ToString())
 }
