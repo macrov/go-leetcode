@@ -1,15 +1,9 @@
 package main
 
 import (
-	"bytes"
 	"fmt"
-	"strconv"
+	. "leetcode/utils/list"
 )
-
-type ListNode struct {
-	Val int
-	Next *ListNode
-}
 
 func mergeTwoLists(l1 *ListNode, l2 *ListNode) *ListNode {
 	dummyHead := &ListNode{}
@@ -46,45 +40,6 @@ func mergeKLists(lists []*ListNode) *ListNode {
 	return res
 }
 
-func (l *ListNode) ToString() string {
-	sb := bytes.NewBufferString("{")
-	for l.Next != nil {
-		sb.WriteString(strconv.Itoa(l.Val))
-		sb.WriteString("->")
-		l = l.Next
-	}
-	sb.WriteString(strconv.Itoa(l.Val))
-	sb.WriteString("}")
-	return sb.String()
-}
-
 func main() {
-	var l1, l2, l3, head, curr *ListNode
-	curr = &ListNode{}
-	head = curr
-	for _, n := range []int{1,4,5} {
-		curr.Next = &ListNode{n, nil}
-		curr = curr.Next
-	}
-	head = head.Next
-	l1 = head
-
-	curr = &ListNode{}
-	head = curr
-	for _, n := range []int{1,3,4} {
-		curr.Next = &ListNode{n, nil}
-		curr = curr.Next
-	}
-	head = head.Next
-	l2 = head
-
-	curr = &ListNode{}
-	head = curr
-	for _, n := range []int{2,6} {
-		curr.Next = &ListNode{n, nil}
-		curr = curr.Next
-	}
-	head = head.Next
-	l3 = head
-	fmt.Println(mergeKLists([]*ListNode{l1,l2,l3}).ToString())
+	fmt.Println(mergeKLists([]*ListNode{FromInt(1,4,5), FromInt(1,3,4), FromInt(2,6)}).ToString())
 }

@@ -1,15 +1,9 @@
 package main
 
 import (
-	"bytes"
 	"fmt"
-	"strconv"
+	. "leetcode/utils/list"
 )
-
-type ListNode struct {
-	Val int
-	Next *ListNode
-}
 
 func mergeTwoLists(l1 *ListNode, l2 *ListNode) *ListNode {
 	dumyHead := &ListNode{}
@@ -38,36 +32,6 @@ func mergeTwoLists(l1 *ListNode, l2 *ListNode) *ListNode {
 	return dumyHead.Next
 }
 
-func (l *ListNode) ToString() string {
-	sb := bytes.NewBufferString("{")
-	for l.Next != nil {
-		sb.WriteString(strconv.Itoa(l.Val))
-		sb.WriteString("->")
-		l = l.Next
-	}
-	sb.WriteString(strconv.Itoa(l.Val))
-	sb.WriteString("}")
-	return sb.String()
-}
-
 func main() {
-	var l1, l2, head, curr *ListNode
-	curr = &ListNode{}
-	head = curr
-	for _, n := range []int{1,2,4} {
-		curr.Next = &ListNode{n, nil}
-		curr = curr.Next
-	}
-	head = head.Next
-	l1 = head
-
-	curr = &ListNode{}
-	head = curr
-	for _, n := range []int{1,3,4} {
-		curr.Next = &ListNode{n, nil}
-		curr = curr.Next
-	}
-	head = head.Next
-	l2 = head
-	fmt.Println(mergeTwoLists(l1, l2).ToString())
+	fmt.Println(mergeTwoLists(FromInt(1,2,4), FromInt(1,3,4)).ToString())
 }
