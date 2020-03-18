@@ -10,7 +10,7 @@ type ListNode struct {
 	Next *ListNode
 }
 
-func (l *ListNode) ToString() string {
+func (l *ListNode) String() string {
 	if l == nil {
 		return "{}"
 	}

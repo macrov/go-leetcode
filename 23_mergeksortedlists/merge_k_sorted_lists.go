@@ -41,5 +41,5 @@ func mergeKLists(lists []*ListNode) *ListNode {
 }
 
 func main() {
-	fmt.Println(mergeKLists([]*ListNode{FromInt(1,4,5), FromInt(1,3,4), FromInt(2,6)}).ToString())
+	fmt.Println(mergeKLists([]*ListNode{FromInt(1,4,5), FromInt(1,3,4), FromInt(2,6)}).String())
 }

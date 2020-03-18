@@ -33,5 +33,5 @@ func mergeTwoLists(l1 *ListNode, l2 *ListNode) *ListNode {
 }
 
 func main() {
-	fmt.Println(mergeTwoLists(FromInt(1,2,4), FromInt(1,3,4)).ToString())
+	fmt.Println(mergeTwoLists(FromInt(1,2,4), FromInt(1,3,4)).String())
 }

@@ -30,5 +30,5 @@ func swapPairs(head *ListNode) *ListNode {
 }
 
 func main() {
-	fmt.Println(swapPairs(FromArray([]int{})).ToString())
+	fmt.Println(swapPairs(FromArray([]int{})).String())
 }
