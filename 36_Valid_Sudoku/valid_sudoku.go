@@ -2,13 +2,12 @@ package main
 
 import (
 	"fmt"
-	"strconv"
 )
 
 func isValidSudoku(board [][]byte) bool {
-	columnMap := make(map[string]string)
-	rowMap := make(map[string]string)
-	boxMap := make(map[string]string)
+	columnMap := make(map[int]bool)
+	rowMap := make(map[int]bool)
+	boxMap := make(map[int]bool)
 
 	for r:=0;r<9;r++ {
 		for c:=0;c<9;c++ {
@@ -19,29 +18,29 @@ func isValidSudoku(board [][]byte) bool {
 			boxIndex := (r / 3) * 3 + (c / 3)
 
 			// column
-			columnKey := strconv.Itoa(c) + "-" + string(board[r][c])
+
+			columnKey := c * 1000 + int(board[r][c])
 			if _, ok := columnMap[columnKey]; !ok {
-				columnMap[columnKey] = "t"
+				columnMap[columnKey] = true
 			} else {
 				return false
 			}
 			// row
-			rowKey := strconv.Itoa(r) + "-" + string(board[r][c])
+			rowKey := r * 1000 + int(board[r][c])
 			if _, ok := rowMap[rowKey]; !ok {
-				rowMap[rowKey] = "t"
+				rowMap[rowKey] = true
 			} else {
 				return false
 			}
 			// box
-			boxKey := strconv.Itoa(boxIndex) + "-" + string(board[r][c])
+			boxKey := boxIndex * 1000 + int(board[r][c])
 			if _, ok := boxMap[boxKey]; !ok {
-				boxMap[boxKey] = "t"
+				boxMap[boxKey] = true
 			} else {
 				return false
 			}
 		}
 	}
-
 	return true
 }
 
